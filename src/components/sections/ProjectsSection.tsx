@@ -31,9 +31,9 @@ export default function ProjectsSection() {
   }, []);
 
   return (
-    <section id="projeler" className="w-full max-w-3xl py-8">
-      <SectionAvatar src="/avatar2.png" />
-      <h2 className="text-2xl font-semibold text-zinc-800 mb-4">Projeler</h2>
+    <section id="projeler" className="w-full max-w-3xl py-4 sm:py-8 px-1 sm:px-0">
+      <SectionAvatar src="/avatar2.jpg" />
+      <h2 className="text-xl sm:text-2xl font-semibold text-zinc-800 mb-3 sm:mb-4">Projeler</h2>
       {loading && (
         <p className="text-zinc-500">Yükleniyor...</p>
       )}
@@ -44,14 +44,14 @@ export default function ProjectsSection() {
         <p className="text-zinc-600">Henüz proje bulunmuyor.</p>
       )}
       {!loading && !error && repos.length > 0 && (
-        <ul className="grid gap-4 sm:grid-cols-2" role="list">
+        <ul className="grid gap-3 sm:gap-4 sm:grid-cols-2" role="list">
           {repos.map((repo) => (
             <li key={repo.id}>
               <Link
                 href={`/projeler/${repo.name}`}
-                className="block p-4 rounded-xl bg-white/90 border border-zinc-200 shadow-sm hover:bg-zinc-50 hover:border-zinc-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 transition-colors"
+                className="block p-3 sm:p-4 rounded-lg sm:rounded-xl bg-white/90 border border-zinc-200 shadow-sm hover:bg-zinc-50 hover:border-zinc-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-zinc-400 transition-colors min-h-[44px]"
               >
-                <h3 className="font-semibold text-zinc-800 truncate">{repo.name}</h3>
+                <h3 className="font-semibold text-zinc-800 truncate text-sm sm:text-base">{repo.name}</h3>
                 {repo.description && (
                   <p className="text-sm text-zinc-600 mt-1 line-clamp-2">{repo.description}</p>
                 )}

@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { profile } from "@/data/profile";
 
 interface SectionAvatarProps {
   src: string;
@@ -7,17 +6,15 @@ interface SectionAvatarProps {
 
 export default function SectionAvatar({ src }: SectionAvatarProps) {
   return (
-    <div className="flex justify-center mb-6">
-      <div className="relative w-24 h-24 rounded-full overflow-hidden border-4 border-white shadow-lg ring-2 ring-zinc-200/80">
-        <Image
-          src={src}
-          alt={profile.name}
-          width={96}
-          height={96}
-          className="object-cover w-full h-full"
-          unoptimized
-        />
-      </div>
+    <div className="flex justify-center mb-3 sm:mb-4">
+      <Image
+        src={src}
+        alt=""
+        width={80}
+        height={80}
+        className="w-14 h-14 sm:w-20 sm:h-20 rounded-full object-cover"
+        unoptimized
+      />
     </div>
   );
 }

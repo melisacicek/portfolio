@@ -5,7 +5,7 @@ Kişisel portföy sitesi: mouse ile renklenen arka plan, GitHub projeleri, “Ba
 ## Kurulum
 
 1. **Ortam değişkenleri:** `.env.example` dosyasını `.env.local` olarak kopyalayın. `GITHUB_TOKEN` ve `GITHUB_USERNAME` değerlerini doldurun. Token’ı asla repoda paylaşmayın; `.env.local` zaten `.gitignore` içindedir.
-2. **Avatar görselleri:** Ana sayfadaki profil fotoğrafı için `public/avatar1.png` kullanılır. İsterseniz `public/avatar2.png` ve `public/avatar3.png` dosyalarını da ekleyebilirsiniz (ileride carousel vb. için kullanılabilir).
+2. **Avatar görselleri:** Ana sayfadaki profil fotoğrafı için `public/avatar1.jpg` kullanılır. İsterseniz `public/avatar2.jpg` ve `public/avatar3.jpg` dosyalarını da ekleyebilirsiniz (ileride carousel vb. için kullanılabilir).
 
 ## Getting Started
 
