@@ -1,70 +1,54 @@
-![image](assets/readme-photo.png)
- 
-# Dünyanın ilk AI portföyü 🤖✨  
+# Melisa Çiçek Soyubey – Portföy
 
-**Statik portföyler öldü.**  
-Bu yüzden [toukoum.fr](https://toukoum.fr)'yi oluşturdum.
+Kişisel portföy sitesi: mouse ile renklenen arka plan, GitHub projeleri, “Bana bir şey sor” FAQ, Hakkımda / Projeler / Skills / İletişim bölümleri.
 
-Sizi sonsuzca kaydırmaya zorlamak yerine, portföyüm *size* uyum sağlıyor.  
-Bir soru sorun — AI avatarım anında yanıtlıyor.
+## Kurulum
 
-## 👇 Ne sorabilirsiniz?
+1. **Ortam değişkenleri:** `.env.example` dosyasını `.env.local` olarak kopyalayın. `GITHUB_TOKEN` ve `GITHUB_USERNAME` değerlerini doldurun. Token’ı asla repoda paylaşmayın; `.env.local` zaten `.gitignore` içindedir.
+2. **Avatar görselleri:** Ana sayfadaki profil fotoğrafı için `public/avatar1.png` kullanılır. İsterseniz `public/avatar2.png` ve `public/avatar3.png` dosyalarını da ekleyebilirsiniz (ileride carousel vb. için kullanılabilir).
 
-- 🧠 **Teknik işe alım uzmanı mısınız?** Teknoloji yığınım ve sonuçlarım hakkında sorun  
-- 💻 **Geliştirici misiniz?** Koduma ve düşünce tarzıma dalın  
-- 🧑‍🤝‍🧑 **Arkadaş veya aile misiniz?** Üzerinde çalıştığım şeyleri görün  
+## Getting Started
 
----
+Önce geliştirme sunucusunu çalıştırın:
 
-Bu bir portföy değil.  
-Bu, **merakınıza göre uyarlanmış bir konuşma**.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-➡️ **Şimdi deneyin:** [https://toukoum.fr](https://toukoum.fr)  
-*Ne soracaksınız?*
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## 🚀 Nasıl çalıştırılır
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Bu projeyi yerel olarak çalıştırmak ister misiniz? İşte ihtiyacınız olanlar:
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-### Ön Koşullar
-- **Node.js** (v18 veya üzeri)
-- **pnpm** paket yöneticisi
-- **OpenAI API token** (AI sohbet işlevselliği için)
-- **GitHub token** (GitHub entegrasyon özellikleri için)
+## Learn More
 
-### Kurulum
-1. **Depoyu klonlayın**
-   ```bash
-   git clone <your-repo-url>
-   cd portfolio
-   ```
+To learn more about Next.js, take a look at the following resources:
 
-2. **Bağımlılıkları yükleyin**
-   ```bash
-   pnpm install
-   ```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-3. **Ortam değişkenleri**
-   Kök dizinde bir `.env` dosyası oluşturun:
-   ```env
-   OPENAI_API_KEY=your_openai_api_key_here
-   GITHUB_TOKEN=your_github_token_here
-   ```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-4. **Geliştirme sunucusunu çalıştırın**
-   ```bash
-   pnpm dev
-   ```
+## Statik hosting (Netlify, GitHub Pages, vb.)
 
-5. **Tarayıcınızı açın**
-   `http://localhost:3000` adresine gidin
+Proje **statik export** ile build alır; sunucu tarafı (Node/API) yoktur. 404 hatası almamanız için:
 
-### **Token**'larınızı alma
-- **OpenAI API Anahtarı**: [platform.openai.com](https://platform.openai.com/api-keys) adresinden alın
-- **GitHub Token**: Repo erişimi ile [github.com/settings/tokens](https://github.com/settings/personal-access-tokens) adresinde bir tane oluşturun
+1. **Build alın:** `npm run build`  
+   - Önce `prebuild` GitHub'dan repo listesini ve README'leri çeker.  
+   - Ardından Next.js tüm sayfaları statik HTML olarak **`out`** klasörüne yazar.
 
+2. **Hosting'e yükleyin:** **`out` klasörünün içeriğini** sitenizin kök dizini olarak yükleyin (veya "Publish directory" = `out`).  
+   - Eski `dist` veya `.next` klasörünü yüklemeniz 404'e neden olur; statik sunucu sadece `out` içindeki HTML/JS/CSS dosyalarını sunar.
 
+## Deploy on Vercel
 
-#### 🔖 Etiketler
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-`#AIPortföy` `#Teknolojiİnovasyonu` `#DijitalÖzgeçmiş` `#İşArama` `#Teknolojiİnovasyonu` `#WebGeliştirme` `#GelecekTeknolojisi`
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
