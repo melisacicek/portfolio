@@ -93,6 +93,8 @@ export async function POST(request: Request) {
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     request.headers.get("x-real-ip") ||
     "unknown";
+  // MAC adresi tarayıcıdan gelmez; özel istemci X-Client-MAC header'ı ile gönderebilir
+  const mac = request.headers.get("x-client-mac")?.trim() || null;
 
   // Günlük limit: IP başına 10 soru
   if (await isOverDailyLimit(ip)) {
@@ -102,7 +104,7 @@ export async function POST(request: Request) {
     );
   }
 
-  void saveVisitorQuestion(ip, question);
+  void saveVisitorQuestion(ip, question, mac);
 
   const context = [
     `Sen ${profile.name} adına yanıt veriyorsun.`,
