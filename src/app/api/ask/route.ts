@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { profile } from "@/data/profile";
+import { saveVisitorQuestion } from "@/lib/db";
 
 const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
@@ -87,6 +88,13 @@ export async function POST(request: Request) {
       { status: 400 }
     );
   }
+
+  // Ziyaretçi IP ve soruyu veritabanına kaydet (fire-and-forget)
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-real-ip") ||
+    "unknown";
+  void saveVisitorQuestion(ip, question);
 
   const context = [
     `Sen ${profile.name} adına yanıt veriyorsun.`,
