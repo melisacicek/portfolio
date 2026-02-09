@@ -16,6 +16,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Melisa Çiçek Soyubey | Portföy",
   description: "Bilgisayar Mühendisi Öğrencisi - Bingöl Üniversitesi. Projeler, beceriler ve iletişim.",
+  icons: { icon: "/images.png", apple: "/images.png" },
 };
 
 export default function RootLayout({
