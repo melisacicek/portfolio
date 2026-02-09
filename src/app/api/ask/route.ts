@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { profile } from "@/data/profile";
-import { saveVisitorQuestion } from "@/lib/db";
+import { saveVisitorQuestion, isOverDailyLimit } from "@/lib/db";
 
 const GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
 
@@ -89,11 +89,19 @@ export async function POST(request: Request) {
     );
   }
 
-  // Ziyaretçi IP ve soruyu veritabanına kaydet (fire-and-forget)
   const ip =
     request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     request.headers.get("x-real-ip") ||
     "unknown";
+
+  // Günlük limit: IP başına 10 soru
+  if (await isOverDailyLimit(ip)) {
+    return NextResponse.json(
+      { error: "Günlük soru limitine (10) ulaştınız. Yarın tekrar deneyebilirsiniz." },
+      { status: 429 }
+    );
+  }
+
   void saveVisitorQuestion(ip, question);
 
   const context = [

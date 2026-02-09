@@ -17,6 +17,38 @@ async function ensureTable(): Promise<void> {
   `;
 }
 
+const DAILY_LIMIT = 10;
+
+/**
+ * Bu IP'nin bugün (UTC günü) sorduğu soru sayısını döner.
+ * DB yoksa veya hata olursa 0 döner.
+ */
+export async function getTodayQuestionCount(ip: string): Promise<number> {
+  if (!sql) return 0;
+  try {
+    await ensureTable();
+    const rows = await sql`
+      SELECT COUNT(*)::int AS cnt
+      FROM visitor_questions
+      WHERE ip = ${ip}
+        AND created_at >= date_trunc('day', now() AT TIME ZONE 'UTC')
+    `;
+    const row = Array.isArray(rows) ? rows[0] : null;
+    const cnt = row?.cnt;
+    return typeof cnt === "number" ? cnt : Number(cnt) || 0;
+  } catch {
+    return 0;
+  }
+}
+
+/**
+ * Bu IP için günlük limit aşıldı mı?
+ */
+export async function isOverDailyLimit(ip: string): Promise<boolean> {
+  const count = await getTodayQuestionCount(ip);
+  return count >= DAILY_LIMIT;
+}
+
 /**
  * Ziyaretçi IP'si ve soruyu veritabanına kaydeder.
  * DATABASE_URL yoksa veya hata olursa sessizce atlanır (portfolio çalışmaya devam eder).
